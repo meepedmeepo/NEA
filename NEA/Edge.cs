@@ -20,7 +20,7 @@ namespace NEA
         public string ReturnFormattedData()//TODO: remove this temporary solution (maybe make a generic helper method that uses reflection name space to display all fields for any class)
         {
 
-            return "From " + this.From.ReturnFormattedData() + " TO " + this.To.ReturnFormattedData() + "Weight " + this.Weight.ToString();
+            return "From " + this.From.ReturnFormattedData() + " TO " + this.To.ReturnFormattedData() + " Weight " + this.Weight.ToString();
         }
     }
 }

@@ -21,12 +21,14 @@ namespace NEA
         public static Graph CreatTestGraph()
         {
             Graph graph = new Graph();
+           
             for (int i = 0; i < 5; i++)
             {
                 Node n = new Node(i, i.ToString());
-                graph.Nodes.Append(n);
+                graph.Nodes.Add(n);
             }
-            graph.Edges.Append(new Edge(graph.Nodes.ElementAtOrDefault(0), graph.Nodes.ElementAtOrDefault(1), 10.4f));
+            
+            graph.Edges.Add(new Edge(graph.Nodes.ElementAtOrDefault(0), graph.Nodes.ElementAtOrDefault(1), 10.4f));
             return graph;
         }
     }
@@ -34,10 +36,12 @@ namespace NEA
     {
         public static void PrintGraph(Graph graph)
         {
+            Console.WriteLine("Nodes:\n");
             foreach (Node node in graph.Nodes)
             {
                 Console.WriteLine(node.ReturnFormattedData());
             }
+            Console.WriteLine("\nEdges:\n");
             foreach (Edge edge in graph.Edges)
             {
                 Console.WriteLine(edge.ReturnFormattedData());
