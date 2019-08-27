@@ -37,7 +37,7 @@ namespace NEA
                 graph.Nodes.Add(n);
             }
             
-            graph.Edges.Add(new Edge(graph.Nodes.ElementAtOrDefault(0), graph.Nodes.ElementAtOrDefault(1), 10.4f));
+            graph.Edges.Add(new Edge(graph.Nodes.ElementAtOrDefault(0), graph.Nodes.ElementAtOrDefault(1), 10.4f,1));
             return graph;
         }
     }
