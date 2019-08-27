@@ -11,8 +11,8 @@ namespace NEA
     public class Edge : IContainsID,ISerializable
     {
         public Node From { get; set; }
-        Node To { get; set; }
-        float Weight { get; set; }
+        public Node To { get; set; }
+        public float Weight { get; set; }
         public int ID  {get; set; }
         public Edge(Node From, Node To,float Weight,int ID)
         {

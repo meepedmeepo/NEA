@@ -10,7 +10,7 @@ namespace NEA
     [Serializable]
    public class Node : IContainsID,ISerializable
     {
-        string Name { get; set; }
+        public string Name { get; set; }
         public int ID { get; set; }
 
         public Node(int ID,string Name)
