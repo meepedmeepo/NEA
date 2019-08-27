@@ -11,7 +11,8 @@ namespace NEA
     public class Character :  ISerializable
     {
         public int AC { get; set; }
-        public int HP { get; set; }
+        public int MaxHP { get; set; }
+        public int CurrentHP { get; set; }
         public int AtkBonus { get; set; }
         public int MinDmg { get; set; }
         public int MaxDmg { get; set; }
@@ -20,7 +21,8 @@ namespace NEA
         public Character(int AC, int HP, int AtkBonus, int MinDmg,int MaxDmg, int DmgBonus)
         {
             this.AC = AC;
-            this.HP = HP;
+            this.MaxHP = HP;
+            this.CurrentHP = HP;
             this.AtkBonus = AtkBonus;
             this.MinDmg = MinDmg;
             this.MaxDmg = MaxDmg;
@@ -32,7 +34,8 @@ namespace NEA
        public Character(SerializationInfo info, StreamingContext context)
         {
             this.AC = (int)info.GetValue("AC", typeof(int));
-            this.HP = (int)info.GetValue("HP", typeof(int));
+            this.MaxHP = (int)info.GetValue("MaxHP", typeof(int));
+            this.CurrentHP = (int)info.GetValue("CurrentHP", typeof(int));
             this.AtkBonus = (int)info.GetValue("AtkBonus", typeof(int));
             this.MinDmg  = (int)info.GetValue("MinDmg", typeof(int));
             this.MaxDmg = (int)info.GetValue("MaxDmg", typeof(int));
@@ -42,7 +45,8 @@ namespace NEA
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("AC", this.AC);
-            info.AddValue("HP", this.HP);
+            info.AddValue("MaxHP", this.MaxHP);
+            info.AddValue("CurrentHP", this.CurrentHP);
             info.AddValue("AtkBonus", this.AtkBonus);
             info.AddValue("MinDmg", this.MinDmg);
             info.AddValue("MaxDmg", this.MaxDmg);
