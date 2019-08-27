@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
 namespace NEA
 {
-    class Graph
+    [Serializable]
+    class Graph : ISerializable
     {
         public List<Node> Nodes { get; set; }
         public List<Edge> Edges { get; set; }
@@ -21,5 +23,18 @@ namespace NEA
             Edges = new List<Edge>();
 
         }
-     }
+        public Graph(SerializationInfo info, StreamingContext context)
+        {
+            this.Nodes = (List<Node>)info.GetValue("Nodes", typeof(List<Node>));
+            this.Edges = (List<Edge>)info.GetValue("Edges", typeof(List<Edge>));
+            this.Target = (Node)info.GetValue("Target", typeof(Node));
+           
+        }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Nodes", this.Nodes);
+            info.AddValue("Edges", this.Edges);
+            info.AddValue("Target", this.Target);
+        }
+    }
 }
