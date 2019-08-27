@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace NEA
 {
     [Serializable]
-    class Edge : IContainsID,ISerializable
+    public class Edge : IContainsID,ISerializable
     {
         public Node From { get; set; }
         Node To { get; set; }

@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace NEA
 {
     [Serializable]
-    class Graph : ISerializable
+    public class Graph : ISerializable
     {
         public List<Node> Nodes { get; set; }
         public List<Edge> Edges { get; set; }

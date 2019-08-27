@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace NEA
 {
     [Serializable]
-    class Node : IContainsID,ISerializable
+   public class Node : IContainsID,ISerializable
     {
         string Name { get; set; }
         public int ID { get; set; }
