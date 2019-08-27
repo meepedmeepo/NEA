@@ -20,18 +20,17 @@ namespace NEA
         static void Main(string[] args)
         {
             string path = "C:\\temp\\NEA\\data.xml";
-            //Graph graph = TestFunctions.CreatTestGraph();
+            //Graph graph = TestFunctions.CreateTestGraph();
             // XmlHandler.SerializeGeneric<Graph>(graph, path);
             Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
             HelperFunctions.PrintGraph(graph);
-           //Testing to see if the graph is functioning as it should do
             Console.ReadLine();
         }
     }
 
     static class TestFunctions
     {
-        public static Graph CreatTestGraph()
+        public static Graph CreateTestGraph()
         {
             Graph graph = new Graph();
            
@@ -47,7 +46,7 @@ namespace NEA
     }
     static class HelperFunctions
     {
-        public static void PrintGraph(Graph graph)
+        public static void PrintGraph(Graph graph)//Also a test function will most likely remove in the finished project.
         {
             Console.WriteLine("Nodes:\n");
             foreach (Node node in graph.Nodes)
