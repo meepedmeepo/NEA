@@ -61,7 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="CombatEncounter.cs" />
     <Compile Include="Edge.cs" />
+    <Compile Include="Encounter.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Party.cs" />
