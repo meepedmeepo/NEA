@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace NEA
 {
     [Serializable]
-    public class Party : ISerializable
+    public class Party : ISerializable//TODO change the name of party to agent as it will become the machine learning agent?
     {
         public List<Character> Characters { get; set; }
         public Node CurrentNode { get; set; }
