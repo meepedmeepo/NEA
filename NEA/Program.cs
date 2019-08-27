@@ -20,10 +20,10 @@ namespace NEA
         static void Main(string[] args)
         {
             string path = "C:\\temp\\NEA\\data.xml";
-            Graph graph = TestFunctions.CreatTestGraph();
-             XmlHandler.SerializeGeneric<Graph>(graph, path);
-            //Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
-            //Console.WriteLine(graph.Edges[0].Weight);
+            //Graph graph = TestFunctions.CreatTestGraph();
+            // XmlHandler.SerializeGeneric<Graph>(graph, path);
+            Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
+            HelperFunctions.PrintGraph(graph);
            //Testing to see if the graph is functioning as it should do
             Console.ReadLine();
         }
