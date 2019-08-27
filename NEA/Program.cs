@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace NEA
 {
+    public interface IContainsID
+    {
+        int ID
+        {
+            get;
+            set;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -47,6 +56,10 @@ namespace NEA
                 Console.WriteLine(edge.ReturnFormattedData());
             }
 
+        }
+        public static t SearchById<t>(List<t> list, int ID) where t : IContainsID
+        {
+            return list.First(x => x.ID == ID);
         }
     }
 }

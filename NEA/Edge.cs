@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace NEA
 {
-    class Edge
+    class Edge : IContainsID
     {
         Node From { get; set; }
         Node To { get; set; }
         float Weight { get; set; }
-        public Edge(Node From, Node To,float Weight)
+        public int ID { get; set; }
+        public Edge(Node From, Node To,float Weight,int ID)
         {
             this.From = From;
             this.To = To;
             this.Weight = Weight;
+            this.ID = ID;
         }
         public string ReturnFormattedData()//TODO: remove this temporary solution (maybe make a generic helper method that uses reflection name space to display all fields for any class)
         {

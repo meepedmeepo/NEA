@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace NEA
 {
-    class Node
+    class Node : IContainsID
     {
         string Name { get; set; }
-        int ID { get; set; }
+        public int ID { get; set; }
 
         public Node(int ID,string Name)
         {
