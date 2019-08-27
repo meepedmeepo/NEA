@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace NEA
 {
     [Serializable]
-   public class Node : IContainsID,ISerializable
+   public class Node : IContainsID,ISerializable//TODO: add encounters to this class.
     {
         public string Name { get; set; }
         public int ID { get; set; }
