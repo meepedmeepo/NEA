@@ -8,10 +8,10 @@ namespace NEA
 {
     class Edge : IContainsID
     {
-        Node From { get; set; }
+        public Node From { get; set; }
         Node To { get; set; }
         float Weight { get; set; }
-        public int ID { get; set; }
+        public int ID  {get; set; }
         public Edge(Node From, Node To,float Weight,int ID)
         {
             this.From = From;
