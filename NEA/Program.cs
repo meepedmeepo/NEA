@@ -20,10 +20,14 @@ namespace NEA
         static void Main(string[] args)
         {
             string path = "C:\\temp\\NEA\\data.xml";
-            //Graph graph = TestFunctions.CreateTestGraph();
-            // XmlHandler.SerializeGeneric<Graph>(graph, path);
-            Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
+            Graph graph = TestFunctions.CreateTestGraph();
+             XmlHandler.SerializeGeneric<Graph>(graph, path);
+            //Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
             HelperFunctions.PrintGraph(graph);
+            graph.Target = HelperFunctions.SearchById<Node>(graph.Nodes, 1);
+            QLearning.graph = graph;
+            QLearning.InitialiseRMatrix();
+            Console.WriteLine(QLearning.RMatrix);
             Console.ReadLine();
         }
     }
@@ -40,7 +44,7 @@ namespace NEA
                 graph.Nodes.Add(n);
             }
             
-            graph.Edges.Add(new Edge(graph.Nodes.ElementAtOrDefault(0), graph.Nodes.ElementAtOrDefault(1), 10.4f,1));
+            graph.Edges.Add(new Edge(graph.Nodes.ElementAtOrDefault(0), graph.Nodes.ElementAtOrDefault(1), 10,1));
             return graph;
         }
     }

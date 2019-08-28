@@ -11,7 +11,7 @@ namespace NEA
    public class Node : IContainsID,ISerializable//TODO: add encounters to this class.
     {
         public string Name { get; set; }
-        public int ID { get; set; }
+        public int ID { get; set; }//NODE IDS MUST START FROM ZERO ELSE Q LEARNING WON'T WORK!
 
         public Node(int ID,string Name)
         {

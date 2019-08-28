@@ -11,7 +11,7 @@ namespace NEA
     {
         public List<Character> Characters { get; set; }
         public Node CurrentNode { get; set; }
-        public List<Step> MoveList;
+        List<Step> MoveList { get; set; }
         public Party(List<Character> Characters)
         {
             this.Characters = Characters;
