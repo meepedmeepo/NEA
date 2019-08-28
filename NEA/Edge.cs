@@ -12,9 +12,9 @@ namespace NEA
     {
         public Node From { get; set; }
         public Node To { get; set; }
-        public float Weight { get; set; }
+        public int Weight { get; set; }
         public int ID  {get; set; }
-        public Edge(Node From, Node To,float Weight,int ID)
+        public Edge(Node From, Node To,int Weight,int ID)
         {
             this.From = From;
             this.To = To;
@@ -28,7 +28,7 @@ namespace NEA
             this.From = (Node)info.GetValue("From", typeof(Node));
             this.To = (Node)info.GetValue("To", typeof(Node));
             this.ID = (int)info.GetValue("ID", typeof(int));
-            this.Weight = (float)info.GetValue("Weight",typeof(float));
+            this.Weight = (int)info.GetValue("Weight",typeof(int));
         }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {

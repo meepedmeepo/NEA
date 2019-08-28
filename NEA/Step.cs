@@ -14,7 +14,20 @@ public class Step//TODO: consider changing the name of this to something that ma
         //TODO: Accord might not actually be needed for q learning so possibly remove it if it is unecessary
         public Type type { get; set; }
         Edge Move { get; set; }
-        Encounter Encounter { get; set; }
-    
+        Encounter encounter { get; set; }
+        public int Reward { get; set; }
+        public Step(Edge Move,Type type)
+        {
+            this.Move = Move;
+            this.type = type;
+            this.Reward -= Move.Weight;
+        }
+        public Step(Encounter encounter , Type type)
+        {
+            this.encounter = encounter;
+            this.type = type;
+            
+        }
+
     }
 }
