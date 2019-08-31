@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Configuration;
 namespace NEA
 {
     public static class QLearning//TODO: this could be considered the brain of the agent and it would therefore make sense to call it such
@@ -12,8 +12,9 @@ namespace NEA
         public static int[,] RMatrix;
         public static int[,] QMatrix;
         public static int TargetID;
-        public static int TargetReward = 400;//Maybe make this modular and/or balance this
+        public static int TargetReward = Int32.Parse(ConfigurationManager.AppSettings["TargetReward"]);
         public const int NullRValue = 0;//change this to a more modular solution?
+        public static float LearningRate = float.Parse(ConfigurationManager.AppSettings["BaseLearningRate"]);
         public static void InitialiseRMatrix()
         {
             TargetID = graph.Target.ID;
@@ -43,7 +44,7 @@ namespace NEA
 
         public static void InitialiseQMatrix()
         {
-            QMatrix = new int[graph.Nodes.Count, graph.Nodes.Count;
+            QMatrix = new int[graph.Nodes.Count, graph.Nodes.Count];
             for (int i = 0; i < QMatrix.GetLength(0); i++)
             {
                 for (int e = 0; e < QMatrix.GetLength(1); e++)

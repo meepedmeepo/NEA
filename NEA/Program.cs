@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Configuration;
 namespace NEA
 {
     public interface IContainsID
@@ -19,6 +19,7 @@ namespace NEA
     {
         static void Main(string[] args)
         {
+
             string path = "C:\\temp\\NEA\\data.xml";
             Graph graph = TestFunctions.CreateTestGraph();
              XmlHandler.SerializeGeneric<Graph>(graph, path);
@@ -27,7 +28,7 @@ namespace NEA
             graph.Target = HelperFunctions.SearchById<Node>(graph.Nodes, 1);
             QLearning.graph = graph;
             QLearning.InitialiseRMatrix();
-            Console.WriteLine(QLearning.RMatrix);
+            //Console.WriteLine(QLearning.RMatrix);
             for (int i = 0; i < QLearning.RMatrix.GetLength(0); i++)//prints out all of the rows of the array to display it as a matrix TODO: remove this as it is only for testing.
             {
                 for (int e = 0; e < QLearning.RMatrix.GetLength(1); e++)
@@ -36,7 +37,9 @@ namespace NEA
                 }
                 Console.WriteLine("");
             }
+           
             Console.ReadLine();
+            
         }
     }
 
