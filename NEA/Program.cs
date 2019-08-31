@@ -28,6 +28,14 @@ namespace NEA
             QLearning.graph = graph;
             QLearning.InitialiseRMatrix();
             Console.WriteLine(QLearning.RMatrix);
+            for (int i = 0; i < QLearning.RMatrix.GetLength(0); i++)//prints out all of the rows of the array to display it as a matrix TODO: remove this as it is only for testing.
+            {
+                for (int e = 0; e < QLearning.RMatrix.GetLength(1); e++)
+                {
+                    Console.Write(QLearning.RMatrix[i,e] + " ");
+                }
+                Console.WriteLine("");
+            }
             Console.ReadLine();
         }
     }
