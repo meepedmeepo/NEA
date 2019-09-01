@@ -20,7 +20,7 @@ namespace NEA
         static void Main(string[] args)
         {
 
-            string path = "C:\\temp\\NEA\\data.xml";
+            string path = "C:\\temp\\NEA\\data.xml";//Make this more universal
             Graph graph = TestFunctions.CreateTestGraph();
              XmlHandler.SerializeGeneric<Graph>(graph, path);
             //Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
@@ -56,6 +56,7 @@ namespace NEA
             }
             
             graph.Edges.Add(new Edge(graph.Nodes.ElementAtOrDefault(0), graph.Nodes.ElementAtOrDefault(1), 10,1));
+            graph.Edges.Add(new Edge(graph.Nodes.ElementAtOrDefault(1), graph.Nodes.ElementAtOrDefault(3),34,2));
             return graph;
         }
     }

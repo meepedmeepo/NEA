@@ -11,7 +11,7 @@ namespace NEA
     {
         public List<Character> Characters { get; set; }
         public Node CurrentNode { get; set; }
-        List<Step> MoveList { get; set; }
+        List<Step> MoveList { get; set; }//TODO: sort out this class and possibly remove most of it or merge it with q learning class
         public Party(List<Character> Characters)
         {
             this.Characters = Characters;

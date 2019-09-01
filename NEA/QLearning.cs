@@ -15,6 +15,7 @@ namespace NEA
         public static int TargetReward = Int32.Parse(ConfigurationManager.AppSettings["TargetReward"]);
         public const int NullRValue = 0;//change this to a more modular solution?
         public static float LearningRate = float.Parse(ConfigurationManager.AppSettings["BaseLearningRate"]);
+        public static Random RandGen = new Random();
         public static void InitialiseRMatrix()
         {
             TargetID = graph.Target.ID;
@@ -40,8 +41,8 @@ namespace NEA
                     RMatrix[s, TargetID] = TargetReward;
                 }
             }
+            
         }
-
         public static void InitialiseQMatrix()
         {
             QMatrix = new int[graph.Nodes.Count, graph.Nodes.Count];
@@ -49,10 +50,44 @@ namespace NEA
             {
                 for (int e = 0; e < QMatrix.GetLength(1); e++)
                 {
-                    QMatrix[i, e] = 0;//TODO: see if this works with the null value of the RMatrix being zero also
+                    QMatrix[i, e] = 0;//TODO: see if this works with the null value of the RMatrix being zero also see if this is the correct approach to the qmatrix
                 }
             }
 
+        }
+
+        public static void QTransition(int State, int Action)
+        {
+            QMatrix[State, Action] = (int)(RMatrix[State, Action] + LearningRate * GetHighestQReward(State));//TODO: add reward from encounter in node to this 
+        }
+        public static int GetHighestQReward(int State)
+        {
+            int currentHighest = int.MinValue;
+            for (int Action = 0; Action < QMatrix.GetLength(1); Action++)
+            {
+                if (QMatrix[State,Action] > currentHighest)
+                {
+                    currentHighest = QMatrix[State, Action];
+                }
+            }
+
+            return currentHighest;
+        }
+        public static void TrainQMatrix(int maxEpochs,bool firstTraining,Party party)
+        {
+            if (firstTraining)
+            {
+                InitialiseRMatrix();
+                InitialiseQMatrix();
+                for (int e = 0; e < maxEpochs; e++)
+                {
+                    int startPoint = RandGen.Next(0, graph.Nodes.Count);
+                    while (party.CurrentNode.ID != TargetID)
+                    {
+
+                    }
+                }
+            }
         }
     }
 }
