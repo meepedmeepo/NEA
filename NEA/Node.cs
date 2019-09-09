@@ -12,11 +12,12 @@ namespace NEA
     {
         public string Name { get; set; }
         public int ID { get; set; }//NODE IDS MUST START FROM ZERO ELSE Q LEARNING WON'T WORK!
-
-        public Node(int ID,string Name)
+        public Encounter NodeEncounter { get; set; }//TODO: choose a more suitable name for this
+        public Node(int ID,string Name,Encounter NodeEncounter)
         {
             this.ID = ID;
             this.Name = Name;
+            this.NodeEncounter = NodeEncounter;
         }
         public Node()
         { }
@@ -25,11 +26,13 @@ namespace NEA
           
             this.ID = (int)info.GetValue("ID", typeof(int));
             this.Name = (string)info.GetValue("Name", typeof(string));
+            this.NodeEncounter = (Encounter)info.GetValue("NodeEncounter", typeof(Encounter));
         }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("ID", this.ID);
             info.AddValue("Name", this.Name);
+            info.AddValue("NodeEncounter", this.NodeEncounter);
             
         }
         public string ReturnFormattedData()//TODO: remove this temporary solution (maybe make a generic helper method that uses reflection name space to display all fields for any class)

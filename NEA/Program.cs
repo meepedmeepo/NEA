@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.IO;
 namespace NEA
 {
     public interface IContainsID
@@ -22,8 +23,9 @@ namespace NEA
         {
 
             string path = "C:\\temp\\NEA\\data.xml";//Make this more universal
-            
-             XmlHandler.SerializeGeneric<Graph>(graph, path);
+            Directory.CreateDirectory(@Environment.SpecialFolder.ProgramFiles + @"\\NEA");
+             //XmlHandler.SerializeGeneric<Graph>(graph, path);//TODO: sort out issue with serialization (it is possibly something needing to be changed with teh create test graph function - it is time to make a specific 
+             //dungeon to test with going forward that can be used as a benchmark)
             //Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
             HelperFunctions.PrintGraph(graph);
             graph.Target = HelperFunctions.SearchById<Node>(graph.Nodes, 1);
@@ -52,7 +54,7 @@ namespace NEA
            
             for (int i = 0; i < 5; i++)
             {
-                Node n = new Node(i, i.ToString());
+                Node n = new Node(i, i.ToString(),new CombatEncounter(150, null));
                 graph.Nodes.Add(n);
             }
             

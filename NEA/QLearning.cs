@@ -16,6 +16,7 @@ namespace NEA
         public static int FailureReward = Int32.Parse(ConfigurationManager.AppSettings["FailureReward"]);
         public const int NullRValue = 0;//change this to a more modular solution?
         public static float LearningRate = float.Parse(ConfigurationManager.AppSettings["BaseLearningRate"]);
+        public static string Path = ConfigurationManager.AppSettings["Path"];
         public static Random RandGen = new Random();
         public static void InitialiseRMatrix()
         {
@@ -59,7 +60,7 @@ namespace NEA
 
         public static void QTransition(int State, int Action)
         {
-            QMatrix[State, Action] = (int)(RMatrix[State, Action] + LearningRate * GetHighestQReward(State));//TODO: add reward from encounter in node to this 
+            QMatrix[State, Action] = (int)(RMatrix[State, Action] + graph.Characters.CurrentNode.NodeEncounter.RunEncounter() + LearningRate * GetHighestQReward(State));//TODO: Check to see if this does what it should do with encounterreward
         }
         public static int GetHighestQReward(int State)
         {
@@ -82,12 +83,15 @@ namespace NEA
                 InitialiseQMatrix();
                 for (int e = 0; e < maxEpochs; e++)
                 {
-                    int startPoint = RandGen.Next(0, graph.Nodes.Count);
-                    while (party.CurrentNode.ID != TargetID)
+                    int state = RandGen.Next(0, graph.Nodes.Count);
+                    while (party.CurrentNode.ID != TargetID && graph.Characters.Characters.Count() > 0)
                     {
-
+                        int action = RandGen.Next(0, graph.Edges.Count());
+                        QTransition(state, action);
+                        state = HelperFunctions.SearchById<Edge>(graph.Edges, action).To.ID;//TODO: Test this fully to see if it actually selects the corrects ids for both edge and the node.
                     }
                 }
+                XmlHandler.SerializeGeneric<int[,]>(QMatrix, Path);
             }
         }
     }

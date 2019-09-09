@@ -54,6 +54,8 @@ namespace NEA
         {
             this.Enemies = Enemies;
         }
+        public CombatEncounter()
+        { }
         public CombatEncounter(int Reward) : base(Reward)
         {
             this.Enemies = new List<Character>();
