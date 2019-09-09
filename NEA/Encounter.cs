@@ -15,9 +15,9 @@ namespace NEA
             this.Reward = Reward;
         }
 
-        public virtual void RunEncounter()
+        public virtual int RunEncounter()
         {
-            
+            return 0;
         }
         public Encounter(SerializationInfo info, StreamingContext context)
         {

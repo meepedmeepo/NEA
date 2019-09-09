@@ -13,6 +13,7 @@ namespace NEA
         public static int[,] QMatrix;
         public static int TargetID;
         public static int TargetReward = Int32.Parse(ConfigurationManager.AppSettings["TargetReward"]);
+        public static int FailureReward = Int32.Parse(ConfigurationManager.AppSettings["FailureReward"]);
         public const int NullRValue = 0;//change this to a more modular solution?
         public static float LearningRate = float.Parse(ConfigurationManager.AppSettings["BaseLearningRate"]);
         public static Random RandGen = new Random();
