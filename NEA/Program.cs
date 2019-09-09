@@ -17,11 +17,12 @@ namespace NEA
 
     class Program
     {
+        public static Graph graph = TestFunctions.CreateTestGraph();
         static void Main(string[] args)
         {
 
             string path = "C:\\temp\\NEA\\data.xml";//Make this more universal
-            Graph graph = TestFunctions.CreateTestGraph();
+            
              XmlHandler.SerializeGeneric<Graph>(graph, path);
             //Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
             HelperFunctions.PrintGraph(graph);

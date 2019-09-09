@@ -13,7 +13,7 @@ namespace NEA
         public List<Node> Nodes { get; set; }
         public List<Edge> Edges { get; set; }
         public Node Target { get; set; }//Change this to an int id for a node?
-        public Party Characters { get; set; }//TODO: maybe change the name of this property?
+        public Party Characters { get; set; }//TODO: maybe change the name of this property? TODO: this also collides with party.characters being a property which can make it confusing please rename ASAP
         //TODO: maybe remove this from the graph as it could be seen as not appropriate for an agent to be part of the world in a model free approach to machine learning.
         
         public List<Edge> MoveOptions(int currentNodeID)//move this to a helper method or other more suitable place?

@@ -13,7 +13,19 @@ namespace NEA
 
         public override void RunEncounter()//TODO: Complete
         {
-            Console.WriteLine("Combat encounter");
+            Party party = Program.graph.Characters;
+            bool isFinished = false;
+            while (!isFinished)
+            {
+                foreach (Character c in party.Characters)
+                {
+
+                }
+                foreach (Character e in this.Enemies)
+                {
+
+                }
+            }
         }
         public CombatEncounter(int Reward,List<Character> Enemies) : base(Reward)
         {
@@ -33,6 +45,10 @@ namespace NEA
             info.AddValue("Enemies", this.Enemies);
             base.GetObjectData( info, context);
 
+
+        }
+        public void KillCharacter()//TODO: Complete this
+        {
 
         }
     }

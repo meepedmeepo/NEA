@@ -17,7 +17,7 @@ namespace NEA
 
         public virtual void RunEncounter()
         {
-            Console.WriteLine("Test Encounter");
+            
         }
         public Encounter(SerializationInfo info, StreamingContext context)
         {
