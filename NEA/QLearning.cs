@@ -75,7 +75,21 @@ namespace NEA
 
             return currentHighest;
         }
-        public static void TrainQMatrix(int maxEpochs,bool firstTraining,Party party)
+        public static int GetHighestQAction(int State)
+        {
+            int currentHighest = int.MinValue;
+            int highestAction = 0;
+            for (int action = 0; action < QMatrix.GetLength(1); action++)
+            {
+                if (QMatrix[State, action] > currentHighest)
+                {
+                    currentHighest = QMatrix[State, action];
+                    highestAction = action;
+                }
+            }
+            return highestAction;
+        }
+            public static void TrainQMatrix(int maxEpochs,bool firstTraining,Party party)
         {
             if (firstTraining)
             {
@@ -94,5 +108,25 @@ namespace NEA
                 XmlHandler.SerializeGeneric<int[,]>(QMatrix, Path);
             }
         }
+        public static List<int[]> CreateMovelist(int state)//TODO: check to see if this works properly and also refactor it possibly - maybe I can make an easier way to get the edge.
+        {
+            List<int[]> Moves = new List<int[]>();
+            while (state != TargetID)
+            {
+                int[] arr = new int[2];
+                arr[0] = state;
+                arr[1] = GetHighestQAction(state);
+                Moves.Add(arr);
+                state = arr[1];//TODO: check if this really works.
+            }
+            return Moves;
+        }
+        public static Party RunMoveList(List<int[]> Moves, Party party)//TODO: check return type
+        {
+
+            return party;
+        }
     }
+    
 }
+
