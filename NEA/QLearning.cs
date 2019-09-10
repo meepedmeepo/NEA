@@ -90,13 +90,17 @@ namespace NEA
             }
             return highestAction;
         }
-            public static void TrainQMatrix(int maxEpochs,bool firstTraining,Party party)
+        public static void StartQLearning(Graph g,int maxEpochs)
+        {
+            graph = g;
+            characters = graph.Characters;
+            InitialiseRMatrix();
+            InitialiseQMatrix();
+            TrainQMatrix(maxEpochs, graph.Characters);
+        }
+            public static void TrainQMatrix(int maxEpochs,Party party)
             {
-            characters = party;
-            if (firstTraining)
-            {
-                InitialiseRMatrix();
-                InitialiseQMatrix();
+            
                 for (int e = 0; e < maxEpochs; e++)
                 {
                     int state = RandGen.Next(0, graph.Nodes.Count);
@@ -109,7 +113,7 @@ namespace NEA
                     }
                 }
                 XmlHandler.SerializeGeneric<int[,]>(QMatrix, Path);
-            }
+            
         }
         public static List<int[]> CreateMovelist(int state)//TODO: check to see if this works properly and also refactor it possibly - maybe I can make an easier way to get the edge.
         {
@@ -130,8 +134,9 @@ namespace NEA
             foreach (int[] Move in Moves)
             {
                 TotalReward += HelperFunctions.SearchById<Node>(graph.Nodes, Move[0]).NodeEncounter.RunEncounter() + RMatrix[Move[0],Move[1]];
-                if (QLearning.characters.Characters.Count() < 1)
+                if (characters.Characters.Count() < 1)
                 {
+                    characters = graph.Characters;
                     return int.MinValue;
                 }
             }
