@@ -35,10 +35,20 @@ namespace NEA
             info.AddValue("Characters", this.Characters);
 
         }
-        public void Move(Edge edge)
+        public void Move(Edge edge)//TODO: remove this unused code???
         {
             this.MoveList.Add(new Step(edge, 0));
 
         }
+        public int GetMissingHealth()
+        {
+            int totalMissing = 0;
+            foreach (Character c in Characters)
+            {
+                totalMissing += (c.MaxHP - c.CurrentHP);
+            }
+            return totalMissing
+        }
+
     }
 }

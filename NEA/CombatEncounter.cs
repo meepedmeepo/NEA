@@ -18,19 +18,19 @@ namespace NEA
             bool finished = false;
             while (!finished)
             {
-                Enemies = CombatRound(Program.graph.Characters.Characters, Enemies, rand);
-                Program.graph.Characters.Characters= CombatRound(Enemies, Program.graph.Characters.Characters, rand);//TODO: change all of the Program.graph.Characters.Character by sorting out a reference.
+                Enemies = CombatRound(QLearning.characters.Characters, Enemies, rand);
+                QLearning.characters.Characters = CombatRound(Enemies, QLearning.characters.Characters, rand);//TODO: change all of the Program.graph.Characters.Character by sorting out a reference.
                 if (Enemies.Count() == 0)
                 {
-                    return this.Reward;
+                    return this.Reward - QLearning.characters.GetMissingHealth();
                 }
-                else if (Program.graph.Characters.Characters.Count() == 0)
+                else if (QLearning.characters.Characters.Count() == 0)
                 {
                     finished = true;
                 }
 
             }
-            return QLearning.FailureReward;//TODO: add the state transition properly
+            return QLearning.FailureReward;
         }
         public List<Character> CombatRound(List<Character> attackers, List<Character> enemies, Random rand)
         {

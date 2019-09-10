@@ -18,6 +18,7 @@ namespace NEA
         public static float LearningRate = float.Parse(ConfigurationManager.AppSettings["BaseLearningRate"]);
         public static string Path = ConfigurationManager.AppSettings["Path"];
         public static Random RandGen = new Random();
+        public static Party characters;
         public static void InitialiseRMatrix()
         {
             TargetID = graph.Target.ID;
@@ -90,7 +91,8 @@ namespace NEA
             return highestAction;
         }
             public static void TrainQMatrix(int maxEpochs,bool firstTraining,Party party)
-        {
+            {
+            characters = party;
             if (firstTraining)
             {
                 InitialiseRMatrix();
@@ -98,6 +100,7 @@ namespace NEA
                 for (int e = 0; e < maxEpochs; e++)
                 {
                     int state = RandGen.Next(0, graph.Nodes.Count);
+                    party = characters;
                     while (party.CurrentNode.ID != TargetID && graph.Characters.Characters.Count() > 0)
                     {
                         int action = RandGen.Next(0, graph.Edges.Count());
@@ -121,10 +124,18 @@ namespace NEA
             }
             return Moves;
         }
-        public static Party RunMoveList(List<int[]> Moves, Party party)//TODO: check return type
+        public static int RunMoveList(List<int[]> Moves)//TODO: check if this functions as plannned.
         {
-
-            return party;
+           int TotalReward = 0;
+            foreach (int[] Move in Moves)
+            {
+                TotalReward += HelperFunctions.SearchById<Node>(graph.Nodes, Move[0]).NodeEncounter.RunEncounter() + RMatrix[Move[0],Move[1]];
+                if (QLearning.characters.Characters.Count() < 1)
+                {
+                    return int.MinValue;
+                }
+            }
+            return TotalReward;
         }
     }
     
