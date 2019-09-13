@@ -115,7 +115,24 @@ namespace NEA
                 XmlHandler.SerializeGeneric<int[,]>(QMatrix, Path);
             
         }
-        public static List<int[]> CreateMovelist(int state)//TODO: check to see if this works properly and also refactor it possibly - maybe I can make an easier way to get the edge.
+
+        public static void ApplyQLearning(int state)
+        {
+            List<int[]> Moves = CreateMoveList(state);
+            int reward = RunMoveList(Moves);
+            if (reward == int.MinValue)
+            {
+                //TODO: failure condition here
+            }
+            else
+            {
+                //TODO: save reward and number of moves to db using sqlite
+                XmlHandler.SerializeGeneric<Party>(characters, @Environment.SpecialFolder.ProgramFiles + "\\NEA\\" + DateTime.UtcNow.ToString() + "party.xml");//TODO: test this
+                
+            }
+        }
+
+        public static List<int[]> CreateMoveList(int state)//TODO: check to see if this works properly and also refactor it possibly - maybe I can make an easier way to get the edge.
         {
             List<int[]> Moves = new List<int[]>();
             while (state != TargetID)

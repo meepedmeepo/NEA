@@ -47,7 +47,7 @@ namespace NEA
             {
                 totalMissing += (c.MaxHP - c.CurrentHP);
             }
-            return totalMissing
+            return totalMissing;
         }
 
     }

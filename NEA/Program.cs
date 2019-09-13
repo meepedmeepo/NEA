@@ -19,11 +19,16 @@ namespace NEA
     class Program
     {
         public static Graph graph = TestFunctions.CreateTestGraph();
+        public static string GeneralPath = Environment.SpecialFolder.ApplicationData + "\\NEA";
         static void Main(string[] args)
         {
 
             string path = "C:\\temp\\NEA\\data.xml";//Make this more universal
-            Directory.CreateDirectory(@Environment.SpecialFolder.ProgramFiles + @"\\NEA");
+            if (!Directory.Exists(GeneralPath))
+            {
+                Directory.CreateDirectory(GeneralPath);
+                Console.WriteLine("Tests");
+            }
              //XmlHandler.SerializeGeneric<Graph>(graph, path);//TODO: sort out issue with serialization (it is possibly something needing to be changed with teh create test graph function - it is time to make a specific 
              //dungeon to test with going forward that can be used as a benchmark)
             //Graph graph = XmlHandler.DeserializeGeneric<Graph>(path);
